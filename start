@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# 启动VNC服务（后台运行，指定显示端口:1，对应5901端口）
+vncserver :1 -localhost no -geometry 1280x720
+
+# 启动NoVNC服务，将VNC的5901端口转发为Web的6080端口
+websockify --web /usr/share/novnc 6080 localhost:5901
